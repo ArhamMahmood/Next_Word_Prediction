@@ -1,6 +1,6 @@
 # Next_Word_Prediction
 ```markdown
-# Text Auto-completion NLP Project using BERT
+Text Auto-completion NLP Project using BERT
 
 This project demonstrates a text auto-completion system using a pre-trained BERT model, wrapped in an interactive Gradio interface.
 
@@ -8,12 +8,12 @@ This project demonstrates a text auto-completion system using a pre-trained BERT
 
 This project implements a text auto-completion system powered by a pre-trained BERT model. It demonstrates how BERT's masked language modeling capabilities can be leveraged to predict the most probable next words in a given phrase. The system includes text cleaning, custom tokenization, and an interactive web interface built with Gradio for real-time user interaction and next-word suggestions.
 
-## Features
+Features
 
-*   **BERT-based Prediction**: Utilizes `bert-base-uncased` for highly accurate next-word prediction.
-*   **Custom Tokenization**: Includes a basic custom tokenizer for initial text processing.
-*   **Data Cleaning**: Processes raw text data to remove irrelevant sections, convert to lowercase, and eliminate special characters.
-*   **Interactive Interface**: A user-friendly web interface powered by Gradio for real-time phrase input and next-word suggestions.
+*   BERT-based Prediction: Utilizes `bert-base-uncased` for highly accurate next-word prediction.
+*   Custom Tokenization: Includes a basic custom tokenizer for initial text processing.
+*   Data Cleaning: Processes raw text data to remove irrelevant sections, convert to lowercase, and eliminate special characters.
+*   Interactive Interface: A user-friendly web interface powered by Gradio for real-time phrase input and next-word suggestions.
 
 ## Setup and Dependencies
 
