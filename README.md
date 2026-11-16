@@ -36,6 +36,3 @@ _(2-4 sentences: which model won, how much fine-tuning helped, what kinds of err
 
 ## Run it
 Open `NLP_Project_Next_Word_Prediction_v2.ipynb` in Google Colab (GPU runtime), upload `study_in_scarlet.pdf` when asked, run all cells.
-
-## Demo
-_(add a screenshot of the Gradio app here)_
