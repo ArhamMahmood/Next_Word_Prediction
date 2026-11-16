@@ -19,12 +19,12 @@ Comparing four next-word predictors on the same held-out text from Arthur Conan 
 
 | Model | Top-1 | Top-5 |
 |---|---|---|
-| Trigram + backoff | _ | _ |
-| BERT (zero-shot) | _ | _ |
-| GPT-2 (zero-shot) | _ | _ |
-| GPT-2 (fine-tuned) | _ | _ |
+| Trigram + backoff | 13.4% | 33.4% |
+| BERT (zero-shot) | 10.5% | 24.1% |
+| GPT-2 (zero-shot) | 28.6% | 53.5% |
+| GPT-2 (fine-tuned) | 32.4% | 58.5% |
 
-GPT-2 test perplexity: zero-shot _ -> fine-tuned _
+GPT-2 test perplexity: zero-shot 47.78 -> fine-tuned 30.70
 
 ## Findings
 _(2-4 sentences: which model won, how much fine-tuning helped, what kinds of errors remain — use the error-analysis cell.)_
