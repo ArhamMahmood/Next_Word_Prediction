@@ -1,59 +1,41 @@
-# Next_Word_Prediction
-```markdown
-Text Auto-completion NLP Project using BERT
+# Next-Word Prediction on *A Study in Scarlet*
 
-This project demonstrates a text auto-completion system using a pre-trained BERT model, wrapped in an interactive Gradio interface.
+Comparing four next-word predictors on the same held-out text from Arthur Conan Doyle's *A Study in Scarlet*:
 
-## Project Overview
+1. **Trigram + backoff** (statistical baseline, trained on the book)
+2. **BERT** `bert-base-uncased` (masked LM, zero-shot)
+3. **GPT-2** `gpt2` (causal LM, zero-shot)
+4. **GPT-2 fine-tuned** on the book
 
-This project implements a text auto-completion system powered by a pre-trained BERT model. It demonstrates how BERT's masked language modeling capabilities can be leveraged to predict the most probable next words in a given phrase. The system includes text cleaning, custom tokenization, and an interactive web interface built with Gradio for real-time user interaction and next-word suggestions.
+## Method
+- Text extracted from the PDF, cleaned (page numbers, headings, drop-caps removed; punctuation and case kept), split into sentences.
+- 80/10/10 train/val/test split by chunks of 10 consecutive sentences (no neighbouring-sentence leakage).
+- Test set: every word with at least 3 words of context, restricted to words that are a single token in both GPT-2 and BERT, so all models are scored on identical examples.
+- Metrics: top-1 / top-5 next-word accuracy; perplexity for GPT-2 before vs. after fine-tuning.
+- Fine-tuning: 4 epochs, lr 5e-5, 128-token blocks, best epoch chosen by validation perplexity.
 
-Features
+## Results
+> Fill these in from the notebook output (`results_accuracy.csv`, `results_accuracy.png`).
 
-*   BERT-based Prediction: Utilizes `bert-base-uncased` for highly accurate next-word prediction.
-*   Custom Tokenization: Includes a basic custom tokenizer for initial text processing.
-*   Data Cleaning: Processes raw text data to remove irrelevant sections, convert to lowercase, and eliminate special characters.
-*   Interactive Interface: A user-friendly web interface powered by Gradio for real-time phrase input and next-word suggestions.
+| Model | Top-1 | Top-5 |
+|---|---|---|
+| Trigram + backoff | _ | _ |
+| BERT (zero-shot) | _ | _ |
+| GPT-2 (zero-shot) | _ | _ |
+| GPT-2 (fine-tuned) | _ | _ |
 
-## Setup and Dependencies
+GPT-2 test perplexity: zero-shot _ -> fine-tuned _
 
-To run this project, you'll need the following Python libraries. You can install them using pip:
+## Findings
+_(2-4 sentences: which model won, how much fine-tuning helped, what kinds of errors remain — use the error-analysis cell.)_
 
-```bash
-pip install gradio transformers datasets torch
-```
+## Limitations
+- Small corpus (~43k words, one author, one novel) — fine-tuning gains are partly style memorisation.
+- BERT is not a left-to-right model; `[MASK]`-at-end is a workaround, not its intended use.
+- Top-k is over whole-word tokens only; rare multi-token words are excluded from evaluation.
 
-## Usage
+## Run it
+Open `NLP_Project_Next_Word_Prediction_v2.ipynb` in Google Colab (GPU runtime), upload `study_in_scarlet.pdf` when asked, run all cells.
 
-1.  **Prepare the Data**: Ensure you have a text file (e.g., `1661-0.txt` as used in the notebook) in the `/content/` directory or update the `file_path` variable to point to your data.
-2.  **Run the Notebook**: Execute all cells in the Jupyter/Colab notebook sequentially.
-3.  **Launch Gradio Interface**: Once the BERT model is loaded and the data processed, the last cell will launch the Gradio interface. A public URL will be provided, which you can open in your browser.
-4.  **Enter Text**: In the Gradio interface, type a phrase (preferably 3+ words) into the input box.
-5.  **Get Predictions**: The model will then suggest the top `k` (default 5) next words, with the top prediction highlighted.
-
-## Model Details
-
-*   **Model**: `bert-base-uncased` from Hugging Face Transformers library.
-*   **Tokenizer**: `BertTokenizer` corresponding to the `bert-base-uncased` model.
-
-## Data
-
-The project uses a text file (e.g., Project Gutenberg's 'The Adventures of Sherlock Holmes' in the example). The `load_clean_text` function performs the following steps:
-
-*   Removes Gutenberg-specific headers and footers.
-*   Converts all text to lowercase.
-*   Removes non-alphabetic characters (keeping only letters and spaces).
-*   Normalizes whitespace.
-
-The cleaned text is then custom-tokenized and saved as `tokenized_movie_lines.json`.
-
-## Project Structure
-
-*   `pyyTem7IDnCK`: Installs required libraries.
-*   `FTKYskRgD8T1`: Imports necessary Python modules.
-*   `ueY5F_pDECks`: Loads the pre-trained `bert-base-uncased` model and tokenizer.
-*   `bhdueRpXECq8`: Defines and uses `load_clean_text` to process the input text file.
-*   `FQQ44NKLEFsc`: Defines `custom_tokenize` and saves the tokenized corpus to a JSON file.
-*   `42WF1a_QEIgU`: Implements `predict_next_words` function using BERT for masked language modeling.
-*   `VVfhu1R3EOQ8`: Sets up and launches the Gradio web interface.
-```
+## Demo
+_(add a screenshot of the Gradio app here)_
