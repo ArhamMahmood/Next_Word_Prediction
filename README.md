@@ -26,9 +26,6 @@ Comparing four next-word predictors on the same held-out text from Arthur Conan 
 
 GPT-2 test perplexity: zero-shot 47.78 -> fine-tuned 30.70
 
-## Findings
-_(2-4 sentences: which model won, how much fine-tuning helped, what kinds of errors remain — use the error-analysis cell.)_
-
 ## Limitations
 - Small corpus (~43k words, one author, one novel) — fine-tuning gains are partly style memorisation.
 - BERT is not a left-to-right model; `[MASK]`-at-end is a workaround, not its intended use.
